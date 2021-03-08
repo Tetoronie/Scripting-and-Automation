@@ -1,0 +1,15 @@
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=183.234.68.86/32
+
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=186.103.199.252/32
+
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=186.103.199.252/32
+
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=190.144.85.90/32
+
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=190.144.85.90/32
+
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=192.95.35.228/32
+
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=192.95.35.228/32
+
+netsh advfirewall firewall add rule name="IP BLOCK" dir=in interface=any action=block remoteip=81.19.44.12/32

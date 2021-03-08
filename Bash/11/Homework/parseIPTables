@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Parse an IPTables log and extract out all inbound TCP entries
+
+# Read in the log file
+LOG="$1"
+
+# Check if the file exists.
+if [[ ! -f ${LOG} ]]
+then
+	echo "The file doesn't exist."
+	echo "Please check the path."
+	exit 1
+
+fi
+
+# search and replace the "SRC=", "DST=", "SPT=", "DPT="
+sed -e "s/SRC=//g" -e "s/DST=//g" -e "s/SPT=//g" -e "s/DPT=//g" ${LOG} | \
+	egrep -i "INBOUND TCP:" | \
+	awk 'BEGIN { format = "%-16s %-19s %-19s %-10s %-5s\n"
+
+		printf format, "Date", "Src IP", "Dst IP", "Src Port", "DST Port"
+		printf format, "--------------", "--------------", "------------", "--------", "--------" }
+
+{ printf format, $1 " " $2 " "  $3, $12, $13, $20, $21}'
