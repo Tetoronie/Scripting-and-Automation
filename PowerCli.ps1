@@ -1,6 +1,6 @@
-﻿$vServer = read_host -Prompt "Please enter vcsa host:"
-$user = read_host -Prompt "Please enter username:"
-$pass = read_host -Prompt "Please enter password:"
+﻿$vServer = read-host -Prompt "Please enter vcsa host:"
+$user = read-host -Prompt "Please enter username:"
+$pass = read-host -Prompt "Please enter password:"
 
 function connect {
     Connect-VIServer -Server $vServer -User $user -Password $pass
@@ -40,27 +40,27 @@ function exportOVA {
 function importOVA {
 
     #select OVA
-    $Source = read_host -Prompt "Provide path to OVA from Disk:"
+    $Source = read-host -Prompt "Provide path to OVA from Disk:"
 
     #Select host
     get-vmhost
-    $host = read_host -Prompt "Select VMHost:"
+    $host = read-host -Prompt "Select VMHost:"
 
     #Select datastore
-    get-datastore
-    $datastore = read_host -Prompt "Select Datastore:"
+    get-datastore | select-object -Property Name, ID
+    $datastore = read-host -Prompt "Select Datastore:"
     
 
 
-    $name = read_host -Prompt "Set name:"
-    $loop = read_host -Prompt "How many to deploy:"
+    $name = read-host -Prompt "Set name:"
+    $loop = read-host -Prompt "How many to deploy:"
 
-    if ($loop > 1) {
+    if ($loop -gt 1) {
 
         $n = 1
 
        }
-    while ($loop > 0) {
+    while ($loop -gt 0) {
 
         $nameN = ('$name' + '$n')
 
@@ -77,14 +77,31 @@ function menu {
     write-host "1) Export OVAs"
     Write-Host "2) Import OVAs"
     $select = Read-Host -Prompt "Selection:"
-}
-if (select = 1 ) {
+
+
+
+<#
+if (1 -eq $select ) {
 
     exportOVA
 }
 
-elif (select = 2) {
+elseif (2 -eq $select) {
 
     importOVA
 }
+#>
 
+switch ( $select )
+{
+	1 { write-host "1"
+		exportOVA }
+	2 { importOVA }
+
+}
+
+}
+
+#connect
+
+menu 
