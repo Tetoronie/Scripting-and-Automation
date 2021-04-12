@@ -1,13 +1,5 @@
-﻿<#
-$vServer = read-host -Prompt "Please enter vcsa host:"
-$user = read-host -Prompt "Please enter username:"
-$pass = read-host -Prompt "Please enter password:"
-#>
-function connect {
-    # Connect to the vcsa server with user provided credentials
-    Connect-VIServer -Server $vServer -User $user -Password $pass
-}
-
+﻿# PowerCLI script to import and export OVAs from a VCSA server
+# Created by Chris Mathieson
 
 function exportOVA {
 
@@ -78,5 +70,4 @@ switch ( $select )
 
 }
 
-#connect
 menu
