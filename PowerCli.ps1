@@ -1,7 +1,8 @@
-﻿$vServer = read-host -Prompt "Please enter vcsa host:"
+﻿<#
+$vServer = read-host -Prompt "Please enter vcsa host:"
 $user = read-host -Prompt "Please enter username:"
 $pass = read-host -Prompt "Please enter password:"
-
+#>
 function connect {
     # Connect to the vcsa server with user provided credentials
     Connect-VIServer -Server $vServer -User $user -Password $pass
@@ -43,7 +44,7 @@ function importOVA {
     $loop = read-host -Prompt "How many to deploy:"
 
     if ($loop -gt 1) {
-        # Loop for deploying more than one of OVA
+        # Loop for deploying more than one of OVA, number is added to the name of each instance
 	for ($n=1; $n -le $loop; $n++) {
 
 		$nameN = ($name + $n)
@@ -77,5 +78,5 @@ switch ( $select )
 
 }
 
-connect
+#connect
 menu
